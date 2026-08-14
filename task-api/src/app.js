@@ -4,6 +4,12 @@ const taskRoutes = require('./routes/tasks');
 const app = express();
 
 app.use(express.json());
+
+// Health check
+app.get('/health', (req, res) => {
+  res.json({ status: 'OK' });
+});
+
 app.use('/tasks', taskRoutes);
 
 app.use((err, req, res, next) => {
